@@ -1,0 +1,12 @@
+- platform: ingresso
+  city_id: 28
+  city_name: Cuiabá
+  partnership: cinemark
+- platform: ingresso
+  city_id: 28
+  city_name: Cuiabá
+  partnership: cinepolis
+- platform: ingresso
+  city_id: 28
+  city_name: Cuiabá
+  partnership: cinearaujo

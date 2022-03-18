@@ -1,0 +1,22 @@
+# Tema Muda Automaticamente
+- id: muda_tema_automaticamente
+  alias: Muda o Tema Automaticamente
+  initial_state: true
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: sun.sun
+      to: above_horizon
+    - platform: sun
+      event: sunset
+      offset: "+00:30:00"
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: >
+          {% if states.sun.sun.state == "above_horizon" %}
+            Google Light Theme
+          {% else %}
+            Google Dark Theme
+          {% endif %}

@@ -1,0 +1,659 @@
+# Aqui é onde você adicionar os cards que não são nativos, ou seja, que são cards customizados e disponibilizados pela comunidade.
+#resources:
+#  - url: /local/upcoming-media-card/upcoming-media-card.js
+#    type: js
+
+# Defina o title que será o título do seu HA
+title: Meu home Assistant
+
+# Aqui você pode definir um plano de fundo para todas as "views" (páginas).
+#background: center / cover no-repeat url("/local/background.png") fixed # nesse caso, a imagem "background.png" deve estar dentro da pasta www para mostrar na sua tela.
+
+# views - Aqui será onde você irá adicionar todas as suas views, ou seja, todas as suas páginas.
+views:
+  # Página 01 - Defina um título
+  - title: Home
+
+    # Caminho unico para acesso direto - Exemplo: /lovelace/${path}
+    path: home
+
+    # Especifique um ícone de guia se você quiser que a guia de visualização seja um ícone. Se não colocar o ícone, ficará o texto no topo.
+    icon: mdi:home-assistant
+
+    # Agora você começa a adicionar os cards dessa visão. Você pode adicionar quantos cards quiser, todos ficarão abaixo de cards.
+    cards:
+      # CARD 01
+      # O cartão de remarcação (markdown) renderiza o texto na tela.
+      - type: markdown
+        title: Lovelace
+        content: >
+          Bem vindo ao seu **Lovelace UI**.
+
+      # CARD 02
+      # O cartão de entidades terá uma lista de entidades e mostrará seu estado.
+      - type: entities
+        # Título do cartão de entidades
+        title: Iluminação
+        # Aqui começo a colocar meus devices como entidades. As entidades aqui serão mostradas na mesma ordem especificada no código.
+        entities:
+          - light.tyeb8389679a6738515bb2l9
+          - light.fita_led
+          - entity: switch.10009138cf
+            # Caso você queria colocar um nome especifico nessa tela - Substituir o nome pelo nome definido abaixo
+            name: Lampada Quarto
+
+      # CARD 02
+      # O cartão de entidades terá uma lista de entidades e mostrará seu estado.
+      - type: entities
+        # Título do cartão de entidades
+        title: Lâmpadas Escritório
+        # Aqui começo a colocar meus devices como entidades. As entidades aqui serão mostradas na mesma ordem especificada no código.
+        entities:
+          - switch.interruptor_escritorio_1
+          - switch.interruptor_escritorio_2
+          - switch.interruptor_escritorio_3
+          - switch.interruptor_escritorio_4
+
+      # CARD 02
+      # O cartão de entidades terá uma lista de entidades e mostrará seu estado.
+      - type: entities
+        # Título do cartão de entidades
+        title: Lâmpadas Garagem
+        # Aqui começo a colocar meus devices como entidades. As entidades aqui serão mostradas na mesma ordem especificada no código.
+        entities:
+          - entity: switch.lampada_porta
+            name: Lâmpada Porta
+          - entity: switch.lampada_garagem
+            name: Lâmpada Garagem
+          - entity: switch.spots_passarela
+            name: Spots Passarela
+
+      #CARD 03
+      - type: entities
+        title: Tomadas
+        entities:
+          - entity: switch.ty458441672cf432bce9f4
+            name: Umidificador
+          - entity: switch.ty458441672cf432bce9f4_2
+            name: Tomadas USB
+
+      #CARD 04
+      - type: vertical-stack
+        cards:
+          - color: "rgb(102, 140, 255)"
+            color_type: label-card
+            name: Climatização
+            styles:
+              card:
+                - height: 20px
+                - font-size: 14px
+            type: "custom:button-card"
+          #CARD 04.1
+          - type: vertical-stack
+            cards:
+              #- type: "custom:button-card"
+              - entity: input_boolean.ar_condicionado
+                icon: mdi:air-filter
+                show state: false
+                size: 15%
+                color: auto
+                styles:
+                  card:
+                    - height: 100px
+                  name:
+                    - color: var(--button-card-light-color)
+                    - font-weight: 500
+                    - font-size: 12px
+                state:
+                  - styles:
+                      card:
+                        - "-webkit-box-shadow": 0px 0px 9px 3px var(--button-card-light-color)
+                        - box-shadow: 0px 0px 2px 1px var(--button-card-light-color)
+                    #- value: "off"
+                    # color: rgb(255, 0, 0)
+                    value: "on"
+                    spin: false
+                type: "custom:button-card"
+
+          - type:
+              horizontal-stack
+              #"custom:button-card"
+              #CARD 04.2
+            cards:
+              - entity: input_boolean.ligar_ventilador
+                name: Ventilador
+                show_state: false
+                size: 30%
+                color: auto
+                hold_action:
+                  action: more-info
+                styles:
+                  card:
+                    - height: 100px
+                  name:
+                    - color: var(--button-card-light-color)
+                    - font-weight: 500
+                    - font-size: 12px
+                state:
+                  - styles:
+                      card:
+                        - "-webkit-box-shadow": 0px 0px 9px 3px var(--button-card-light-color)
+                        - box-shadow: 0px 0px 2px 1px var(--button-card-light-color)
+                    value: "on"
+                    spin: true
+                type: "custom:button-card"
+                #CARD 04.3
+              - type: "custom:button-card"
+                entity: input_boolean.ventilador_velocidade_2
+                triggers_update:
+                  - input_boolean.ligar_ventilador
+                  - input_boolean.ventilador_velocidade_3
+                  - input_boolean.desligar_ventilador
+                name: Ventilador Velocidade 2
+                show_state: false
+                size: 30%
+                color: auto
+                hold_action:
+                  action: more-info
+                styles:
+                  card:
+                    - height: 100px
+                  name:
+                    - color: var(--button-card-light-color)
+                    - font-weight: 500
+                    - font-size: 12px
+                state:
+                  - styles:
+                      card:
+                        - "-webkit-box-shadow": 0px 0px 9px 3px var(--button-card-light-color)
+                        - box-shadow: 0px 0px 2px 1px var(--button-card-light-color)
+                    value: "on"
+                    spin: true
+              #CARD 04.4
+              - type: "custom:button-card"
+                entity: input_boolean.ventilador_velocidade_3
+                name: Ventilador Velocidade 3
+                show_state: false
+                size: 30%
+                color: auto
+                hold_action:
+                  action: more-info
+                styles:
+                  card:
+                    - height: 100px
+                  name:
+                    - color: var(--button-card-light-color)
+                    - font-weight: 500
+                    - font-size: 12px
+                state:
+                  - styles:
+                      card:
+                        - "-webkit-box-shadow": 0px 0px 9px 3px var(--button-card-light-color)
+                        - box-shadow: 0px 0px 2px 1px var(--button-card-light-color)
+                    value: "on"
+                    spin: true
+
+  #PAGINA 2
+  - title: Página 2
+    path: page2
+
+    #CARD 01
+
+    #CARD 03
+    cards:
+      #- type: vertical-stack
+      - color: "rgb(102, 140, 255)"
+        color_type: label-card
+        name: Perfil
+        styles:
+          card:
+            - height: 20px
+            - font-size: 14px
+        type: "custom:button-card"
+      - type: horizontal-stack
+        #CARD 04
+        cards:
+          - type: picture-elements
+            image: /local/memoji_ricardo.jpeg
+            elements:
+              - entity: sensor.iphone_de_ricardo_henrique_battery_level
+                style:
+                  color: black
+                  font-size: 1.4em
+                  left: 20%
+                  top: 90%
+                type: state-label
+
+                # ITEM 2 (icone + sensor)
+              - type: icon
+                icon: mdi:cellphone
+                style:
+                  left: 6%
+                  top: 15%
+
+              - entity: sensor.iphone_de_ricardo_henrique_battery_level
+                style:
+                  color: black
+                  left: 18%
+                  top: 15%
+                type: state-label
+
+            #CARD 05
+          - type: picture-elements
+            image: /local/memoji_larissa.jpeg
+            elements:
+              - entity: sensor.iphone_de_ricardo_henrique_battery_level
+                style:
+                  color: black
+                  font-size: 1.4em
+                  left: 20%
+                  top: 90%
+                type: state-label
+              - type: icon
+                icon: mdi:cellphone-iphone
+                style:
+                  left: 94%
+                  top: 15%
+              - entity: sensor.iphone_de_ricardo_henrique_battery_level
+                style:
+                  color: black
+                  left: 82%
+                  top: 15%
+                type: state-label
+
+      - type: vertical-stack
+        #CARD 06 APP's TV
+        cards:
+          - color: "rgb(102, 140, 255)"
+            color_type: label-card
+            name: APP's TV
+            styles:
+              card:
+                - height: 20px
+                - font-size: 14px
+            type: "custom:button-card"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            name: TV Netflix
+            show_name: false
+            show_entity_picture: true
+            entity_picture: /local/netflix.png
+            entity: scene.tv_netflix
+            aspect_ratio: 1/1
+            size: 70%
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - background-color: "#363636"
+                - opacity: 0.8
+              name:
+                - font-weight: 500
+                - font-size: 12px
+            state:
+              - font-size: 12px
+            tap_action:
+              action: call-service
+              service_data:
+                entity_id: scene.tv_netflix
+              service: scene.turn_on
+
+          - type: "custom:button-card"
+            name: TV PrimeVideo
+            show_name: false
+            show_entity_picture: true
+            entity_picture: /local/prime.png
+            entity: scene.tv_amazon
+            aspect_ratio: 1/1
+            size: 70%
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - background-color: "#363636"
+                - opacity: 0.8
+              name:
+                - font-weight: 500
+                - font-size: 12px
+            state:
+              - font-size: 12px
+            tap_action:
+              action: call-service
+              service_data:
+                entity_id: scene.tv_amazon
+              service: scene.turn_on
+
+          - type: "custom:button-card"
+            name: TV Youtube
+            show_name: false
+            show_entity_picture: true
+            entity_picture: /local/youtube.png
+            entity: scene.tv_youtube
+            aspect_ratio: 1/1
+            size: 70%
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - background-color: "#363636"
+                - opacity: 0.8
+              name:
+                - font-weight: 500
+                - font-size: 12px
+            state:
+              - font-size: 12px
+            tap_action:
+              action: call-service
+              service_data:
+                entity_id: scene.tv_youtube
+              service: scene.turn_on
+
+          - type: "custom:button-card"
+            name: TV Spotify
+            show_name: false
+            show_entity_picture: true
+            entity_picture: /local/spotify.png
+            entity: scene.tv_spotify
+            aspect_ratio: 1/1
+            size: 70%
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - background-color: "#363636"
+                - opacity: 0.8
+              name:
+                - font-weight: 500
+                - font-size: 12px
+            state:
+              - font-size: 12px
+            tap_action:
+              action: call-service
+              service_data:
+                entity_id: scene.tv_spotify
+              service: scene.turn_on
+
+          - type: "custom:button-card"
+            name: TV Plex
+            show_name: false
+            show_entity_picture: true
+            entity_picture: /local/plex.png
+            entity: scene.tv_plex
+            aspect_ratio: 1/1
+            size: 70%
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                - background-color: "#363636"
+                - opacity: 0.8
+              name:
+                - font-weight: 500
+                - font-size: 12px
+            state:
+              - font-size: 12px
+            tap_action:
+              action: call-service
+              service_data:
+                entity_id: scene.tv_plex
+              service: scene.turn_on
+            #CARD 06 APPS TV
+
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout: vertical
+            cards:
+              #              - type: vertical-stack
+              #                cards:
+              - type: custom:layout-card
+                layout: vertical
+                cards:
+                  - type: custom:button-card
+                    tap_action:
+                      action: none
+                    entity: media_player.ricktv
+                    show_icon: false
+                    show_name: true
+                    hold_action:
+                      action: none
+                    icon: "mdi:television"
+                    name: TV Samsung
+                    show_state:
+                    state:
+                      - styles:
+                          card:
+                            - filter: opacity(95%)
+                          state:
+                            - color: "#616161"
+                        value: "off"
+                      - styles:
+                          card:
+                            - filter: opacity(40%)
+                            - color: "#5D4037"
+                        value: unavailable
+                      - styles:
+                          state:
+                            - color: var(--secondary-text-color)
+                        value: "on"
+                    styles:
+                      card:
+                        - height: 20px
+                        - -webkit-box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                        - box-shadow: 0px 0px 5px 3px var(--button-card-light-color)
+                        - opacity: 0.8
+                      name:
+                        - font-weight: 500
+                        - font-size: 16px
+                      state:
+                        - font-size: 12px
+                  - type: glance
+                    show_name: false
+                    show_state: false
+                    columns: 3
+                    entities:
+                      - entity: scene.tv_menu
+                        icon: "mdi:menu"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_menu
+                          service: scene.turn_on
+                      - entity: scene.ligar_tv
+                        icon: "hass:power"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.ligar_tv
+                          service: scene.turn_on
+                      - entity: scene.tv_homepage
+                        icon: "mdi:home"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_homepage
+                          service: scene.turn_on
+                      - entity: scene.tv_volume_down
+                        icon: "mdi:volume-minus"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_volume_down
+                          service: scene.turn_on
+                      - entity: scene.tv_mudo
+                        icon: "mdi:volume-off"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_mudo
+                          service: scene.turn_on
+                      - entity: scene.tv_volume_up
+                        icon: "mdi:volume-plus"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_volume_up
+                          service: scene.turn_on
+                      - entity: scene.tv_sair
+                        icon: "mdi:exit-run"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_sair
+                          service: scene.turn_on
+                      #- entity: scene.desligar_tv
+                      #icon: "mdi:none"
+                      #tap_action:
+                      #action: none
+                      #service_data:
+                      #entity_id:
+                      - entity: scene.desligar_tv
+                        icon: "mdi:close-circle-outline"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.desligar_tv
+                          service: scene.turn_on
+
+                      - entity: scene.tv_voltar
+                        icon: "mdi:replay"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_voltar
+                          service: scene.turn_on
+                      - entity: scene.desligar_tv
+                        icon: "mdi:none"
+                        tap_action:
+                          action: none
+                          service_data:
+                            entity_id:
+                      - entity: scene.tv_navegacao_cima
+                        icon: "mdi:chevron-up"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_navegacao_cima
+                          service: scene.turn_on
+                      - entity: scene.desligar_tv
+                        icon: "mdi:none"
+                        tap_action:
+                          action: none
+                          service_data:
+                            entity_id:
+                      - entity: scene.tv_navegacao_esquerda
+                        icon: "mdi:chevron-left"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_navegacao_esquerda
+                          service: scene.turn_on
+                      - entity: scene.tv_ok
+                        icon: "mdi:minus-circle-outline"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_ok
+                          service: scene.turn_on
+                      - entity: scene.tv_navegacao_direita
+                        icon: "mdi:chevron-right"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_navegacao_direita
+                          service: scene.turn_on
+                      - entity: scene.desligar_tv
+                        icon: "mdi:none"
+                        tap_action:
+                          action: none
+                          service_data:
+                            entity_id:
+                      - entity: scene.tv_navegacao_baixo
+                        icon: "mdi:chevron-down"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.tv_navegacao_baixo
+                          service: scene.turn_on
+                      - entity: scene.desligar_tv
+                        icon: "mdi:none"
+                        tap_action:
+                          action: none
+                          service_data:
+                            entity_id:
+                      - entity: scene.desligar_tv
+                        icon: "mdi:arrow-up"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.desligar_tv
+                          service: scene.turn_on
+                      - entity: scene.desligar_tv
+                        icon: "mdi:none"
+                        tap_action:
+                          action: none
+                          service_data:
+                            entity_id:
+                      - entity: scene.desligar_tv
+                        icon: "mdi:arrow-down"
+                        tap_action:
+                          action: call-service
+                          service_data:
+                            entity_id: scene.desligar_tv
+                          service: scene.turn_on
+
+  #PAGINA 3
+  - title: Página 3
+    path: page3
+
+    cards:
+      - type: glance
+        title: Iluminação
+        entities:
+          - entity: light.tyeb8389679a6738515bb2l9
+            tap_action:
+              action: toggle
+          - entity: light.fita_led
+            tap_action:
+              action: toggle
+
+  #PAGINA 4
+  - title: Cinema
+    path: cinema
+
+    cards:
+      #CARD 05
+      - type: "custom:upcoming-media-card"
+        entity: sensor.cinemark
+        title: Cinemark
+        max: 10
+        image_style: fanart
+        date: ddmm
+        line1_text: "Gênero: $genres"
+        line2_text: "Classificação indicativa: $rating"
+        line3_text: "Lançamento: $release"
+        line4_text: "Duração: $runtime"
+      #CARD 06
+      - type: "custom:upcoming-media-card"
+        entity: sensor.cinepolis
+        title: Cinepolis
+        max: 10
+        image_style: fanart
+        date: ddmm
+        line1_text: "Gênero: $genres"
+        line2_text: "Classificação indicativa: $rating"
+        line3_text: "Lançamento: $release"
+        line4_text: "Duração: $runtime"
+
+      #CARD 07
+      - type: "custom:upcoming-media-card"
+        entity: sensor.cinearaujo
+        title: Cine Araujo
+        max: 10
+        image_style: fanart
+        date: ddmm
+        line1_text: "Gênero: $genres"
+        line2_text: "Classificação indicativa: $rating"
+        line3_text: "Lançamento: $release"
+        line4_text: "Duração: $runtime"

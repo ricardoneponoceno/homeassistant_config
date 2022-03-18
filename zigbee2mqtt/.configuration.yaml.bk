@@ -1,0 +1,54 @@
+{
+  "external_converters": [],
+  "devices": [
+    "devices.yaml"
+  ],
+  "groups": [
+    "groups.yaml"
+  ],
+  "homeassistant": true,
+  "permit_join": false,
+  "mqtt": {
+    "base_topic": "zigbee2mqtt",
+    "user": "addons",
+    "password": "Pah5cooy3ahchaeMiew1gee1ahcaozai8vai0ahfai7uT5phaid8vo3OodaeXuu9",
+    "server": "mqtt://core-mosquitto:1883"
+  },
+  "serial": {
+    "port": "/dev/ttyACM0"
+  },
+  "advanced": {
+    "log_level": "info",
+    "pan_id": 6754,
+    "channel": 24,
+    "network_key": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      13
+    ],
+    "availability_blocklist": [],
+    "availability_passlist": []
+  },
+  "device_options": {},
+  "blocklist": [],
+  "passlist": [],
+  "queue": {},
+  "frontend": {
+    "port": 8099
+  },
+  "experimental": {},
+  "availability": false
+}

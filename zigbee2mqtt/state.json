@@ -1,0 +1,22 @@
+{
+    "0x842e14fffee58898": {
+        "contact": false,
+        "tamper": false,
+        "battery_low": false,
+        "battery": 100,
+        "voltage": 3000
+    },
+    "0x60a423fffee62ff5": {
+        "state_l1": "OFF",
+        "state_l2": "OFF",
+        "state_l3": "OFF",
+        "state_l4": "OFF"
+    },
+    "0x5c0272fffe070398": {
+        "state": "OFF",
+        "energy": 0.02,
+        "power": 0,
+        "current": 0,
+        "voltage": 123
+    }
+}

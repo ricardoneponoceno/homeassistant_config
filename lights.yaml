@@ -1,0 +1,6 @@
+- platform: flux_led
+  scan_interval: 0.5
+  devices:
+    192.168.100.4:
+      name: Fita Led
+      mode: "rgb"

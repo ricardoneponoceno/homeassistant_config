@@ -1,0 +1,34 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Descubra alguns dispositivos automaticamente
+discovery:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+lovelace:
+  mode: yaml
+
+  resources:
+    - url: /local/community/button-card/button-card.js
+      type: module
+    - url: /local/community/upcoming-media-card/upcoming-media-card.js
+      type: module
+    - url: /local/community/fan-control-entity-row/fan-control-entity-row.js
+      type: module
+    - url: /local/community/lovelace-layout-card/layout-card.js
+      type: module
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
+light: !include lights.yaml
+climate: !include climate.yaml
+
+frontend:
+  themes: !include_dir_merge_named themes
+  javascript_version: latest
